@@ -41,7 +41,7 @@ class HeavyInitialLoadTest {
     sqlSessionFactory.getConfiguration().getEnvironment().getDataSource().getConnection().close();
   }
 
-  private static final int THREAD_COUNT = 5;
+  private static final int THREAD_COUNT = 100;
 
   /**
    * Test to demonstrate the effect of the
@@ -79,13 +79,14 @@ class HeavyInitialLoadTest {
     }
 
     Assertions.assertTrue(throwables.isEmpty(), "There were exceptions: " + throwables);
+    System.out.println(throwables);
   }
 
   void selectThing() {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       ThingMapper mapper = sqlSession.getMapper(ThingMapper.class);
-      Thing selected = mapper.selectByCode(Code._1);
-      Assertions.assertEquals(1, selected.getId().longValue());
+      Thing selected = mapper.selectByCode(Code._1000);
+      Assertions.assertEquals(1000, selected.getId().longValue());
     }
   }
 }

@@ -37,6 +37,10 @@ public class BoundSql {
 
   private final String sql;
   private final List<ParameterMapping> parameterMappings;
+
+  /**
+   * sql 参数本身 pojo 或者 map {k1:v1,k2:v2...}
+   */
   private final Object parameterObject;
   private final Map<String, Object> additionalParameters;
   private final MetaObject metaParameters;
